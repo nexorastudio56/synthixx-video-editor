@@ -1,0 +1,61 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Synthixx Video Editor — Studio</title>
+<style>
+:root{--bg:#E6ECF5;--ink:#2B3445;--ink2:#6B778C;--hi:#FFFFFF;--lo:#BFC8D9;--acc:#E60000;--ok:#1E9E5A;--warn:#C98A00}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 Inter,system-ui,Segoe UI,Arial,sans-serif}
+.wrap{max-width:1500px;margin:0 auto;padding:28px;display:grid;grid-template-columns:minmax(380px,520px) 1fr;gap:28px}
+h1{margin:0 0 4px;font-size:26px;letter-spacing:-.02em}h2{margin:0 0 14px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2)}
+.sub{color:var(--ink2);margin:0 0 22px}
+.panel{background:var(--bg);border-radius:26px;padding:22px;margin-bottom:24px;box-shadow:10px 10px 22px var(--lo),-10px -10px 22px var(--hi)}
+.inset{background:var(--bg);border-radius:16px;box-shadow:inset 5px 5px 11px var(--lo),inset -5px -5px 11px var(--hi)}
+.btn{border:0;cursor:pointer;color:var(--ink);font:600 13px inherit;font-family:inherit;padding:10px 16px;border-radius:14px;background:var(--bg);box-shadow:5px 5px 11px var(--lo),-5px -5px 11px var(--hi)}
+.btn:active,.btn.on{box-shadow:inset 4px 4px 9px var(--lo),inset -4px -4px 9px var(--hi);color:var(--acc)}
+.btn.primary{background:var(--acc);color:#fff;box-shadow:5px 5px 14px rgba(230,0,0,.28),-4px -4px 10px var(--hi)}.btn[disabled]{opacity:.5;cursor:default}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.grow{flex:1;min-width:0}
+input[type=text],textarea,select{width:100%;border:0;outline:0;color:var(--ink);font:inherit;padding:11px 14px;border-radius:14px;background:var(--bg);box-shadow:inset 4px 4px 9px var(--lo),inset -4px -4px 9px var(--hi)}
+textarea{min-height:120px;resize:vertical}
+.presets{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.card{cursor:pointer;border:0;text-align:left;padding:14px;border-radius:18px;background:var(--bg);color:var(--ink);font:inherit;box-shadow:6px 6px 13px var(--lo),-6px -6px 13px var(--hi)}
+.card.on{box-shadow:inset 5px 5px 11px var(--lo),inset -5px -5px 11px var(--hi);outline:2px solid var(--acc)}
+.card b{display:block;margin-bottom:8px;font-size:13px}.sw{display:flex;gap:6px}.sw i{width:26px;height:26px;border-radius:50%;display:block;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)}
+.tag{font-size:10px;color:var(--acc);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.pick{display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--ink2)}.pick input{width:64px;height:44px;border:0;padding:0;border-radius:12px;background:none;cursor:pointer}
+.chunks{display:grid;grid-template-columns:repeat(auto-fill,minmax(22px,1fr));gap:6px}.ck{height:22px;border-radius:7px;background:var(--bg);box-shadow:inset 2px 2px 4px var(--lo),inset -2px -2px 4px var(--hi)}
+.ck.done{background:var(--ok)}.ck.running{background:var(--warn);animation:p 1s infinite alternate}.ck.failed{background:var(--acc)}.ck.gpu{outline:2px solid #6a4cff}
+@keyframes p{to{opacity:.45}}
+.badge{display:inline-block;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700;margin:0 6px 6px 0;background:var(--bg);box-shadow:3px 3px 7px var(--lo),-3px -3px 7px var(--hi)}.badge.pass{color:var(--ok)}.badge.fail{color:var(--acc)}.badge.fix{color:var(--warn)}
+video{width:100%;max-height:560px;border-radius:18px;background:#111}.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px}
+pre{margin:0;white-space:pre-wrap;font:11px/1.5 ui-monospace,Menlo,Consolas,monospace;color:var(--ink2);max-height:190px;overflow:auto}
+.bar{height:12px;border-radius:8px;overflow:hidden}.bar>i{display:block;height:100%;background:var(--acc)}
+small{color:var(--ink2)}.err{color:var(--acc);font-weight:600}
+#scrubSlider{width:100%;cursor:pointer;accent-color:var(--acc)}
+@media(max-width:1000px){.wrap{grid-template-columns:1fr}.two{grid-template-columns:1fr}}
+</style></head><body><div class="wrap">
+<div>
+  <h1>Synthixx Studio</h1><p class="sub">One component set. Any brand. Deterministic output.</p>
+  <div class="panel"><h2>1-click presets</h2><div id="presets" class="presets"></div></div>
+  <div class="panel"><h2>Custom brand kit</h2>
+    <div class="row" style="gap:22px;margin-bottom:16px">
+      <label class="pick">Background<input id="cBg" type="color" value="#FFFFFF"></label>
+      <label class="pick">Text / Contrast<input id="cTx" type="color" value="#09090B"></label>
+      <label class="pick">Hero Accent<input id="cAc" type="color" value="#E60000"></label>
+      <label class="pick">Logo → 3D Brand Anchor<input id="logo" type="file" accept="image/png,image/svg+xml,image/jpeg,image/webp" style="width:170px;height:auto;padding:8px 0"></label>
+    </div>
+    <small id="logoInfo">No logo uploaded.</small>
+    <h2 style="margin-top:16px">Material</h2><div id="materials" class="row"></div>
+    <h2 style="margin-top:16px">Pacing</h2><div id="pacing" class="row"></div>
+  </div>
+  <div class="panel"><h2>Import from website URL</h2><div class="row"><div class="grow"><input id="url" type="text" placeholder="https://yourbrand.com"></div><button id="goUrl" class="btn">Extract</button></div>
+    <h2 style="margin-top:18px">AI style prompt</h2><div class="row"><div class="grow"><input id="prompt" type="text" placeholder="calm luxury fintech, emerald, slow"></div><button id="goPrompt" class="btn">Compile</button></div><div id="importMsg" style="margin-top:10px"></div></div>
+  <div class="panel"><h2>Live BrandThemeTokens</h2><div id="preview"></div></div>
+</div>
+<div>
+  <div class="panel"><h2>Script &amp; render</h2><textarea id="script" placeholder="Paste the narration script…">Stop using AI like a basic chatbot. Right now, an autonomous AI agent can open a browser, search live data, write code and ship the result. Stop typing prompts. Start delegating outcomes.</textarea>
+    <div class="row" style="margin-top:14px"><select id="ratio" style="width:120px"><option>9:16</option><option>16:9</option></select><select id="quality" style="width:130px"><option>draft</option><option>looks</option><option>delivery</option></select><button id="render" class="btn primary">Render video</button><span id="renderMsg"></span></div></div>
+  <div class="two">
+    <div class="panel"><h2>Player</h2><video id="player" controls playsinline></video><div id="noVideo" style="padding:30px;text-align:center;color:var(--ink2)">Render to see the video here.</div><img id="sheet" alt="" style="width:100%;margin-top:12px;border-radius:14px;display:none"></div>
+    <div class="panel"><h2>QA &amp; chunk progress</h2>
+      <div id="qaBadges"></div><div class="inset" style="padding:12px;margin:10px 0 14px"><div class="row" style="justify-content:space-between"><b id="chunkTitle">Chunks —</b><small id="chunkSub"></small></div><div class="bar inset" style="margin:8px 0 12px"><i id="bar" style="width:0%"></i></div><div id="chunks" class="chunks"></div></div>
+      <div class="inset" style="padding:12px;margin-bottom:14px"><b>Scheduler</b><div id="sched" style="margin-top:6px"></div></div>
+      <div class="inset" style="padding:12px"><b>Job log</b><pre id="log"></pre></div></div>
+  </div>
+</div></div><script src="/app.js"></script></body></html>

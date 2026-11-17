@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, height=1920">
+<title>Short White Editorial — 1080×1920 @ 60fps</title>
+<script src="assets/gsap.min.js"></script>
+<script>
+window.__frameBarrier = { settle: () => Promise.resolve() };
+window.__timelines = window.__timelines || {};
+window.__setFrame = function(f) {
+  if (window.__timelines && window.__timelines["main"]) {
+    const data = window.__EDITORIAL__;
+    if (data) {
+      window.__timelines["main"].progress(Math.min(1, Math.max(0, f / (data.fps * data.durationSec))));
+    }
+  }
+};
+</script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 1080px; height: 1920px; overflow: hidden;
+    background: #FFFFFF;
+    color: #0F172A;
+    font-family: 'Inter', 'DejaVu Sans', sans-serif;
+  }
+  /* Subtle micro-grid on white background */
+  .grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none; z-index: 0;
+  }
+  /* Safe stage: 160px top, 180px bottom, 60px sides */
+  .stage {
+    position: absolute;
+    left: 60px; right: 60px;
+    top: 160px; bottom: 180px;
+    z-index: 1;
+  }
+  /* Kinetic word caption (pill) */
+  .caption {
+    position: absolute;
+    left: 50%; bottom: 220px;
+    transform: translateX(-50%);
+    padding: 14px 28px;
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.85);
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 1.15;
+    text-align: center;
+    z-index: 40;
+    pointer-events: none;
+    max-width: 920px;
+    white-space: pre-wrap;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+  .caption.active { opacity: 1; }
+  .caption b { color: #76B900; } /* NVIDIA green accent */
+  /* Portrait slot with glowing brand-colored ring */
+  .portrait-slot {
+    position: absolute;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 30;
+    box-shadow: 0 0 0 6px rgba(118, 185, 0, 0.35), 0 20px 60px rgba(0,0,0,0.12);
+    border: 4px solid #FFFFFF;
+    opacity: 0;
+  }
+  .portrait-slot.visible { opacity: 1; }
+  .portrait-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  /* Logo slot */
+  .logo-slot {
+    position: absolute;
+    width: 120px; height: 120px;
+    z-index: 35;
+    opacity: 0;
+  }
+  .logo-slot.visible { opacity: 1; }
+  .logo-img {
+    width: 100%; height: 100%;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 8px 24px rgba(0,0,0,0.15));
+  }
+  /* Hero headline */
+  .hero {
+    position: absolute;
+    left: 60px; right: 60px;
+    top: 180px;
+    font-weight: 800;
+    font-size: 56px;
+    line-height: 1.05;
+    text-align: center;
+    z-index: 20;
+    opacity: 0;
+  }
+  .hero.visible { opacity: 1; }
+  /* Subhead */
+  .subhead {
+    position: absolute;
+    left: 60px; right: 60px;
+    top: 520px;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.3;
+    text-align: center;
+    color: #475569;
+    z-index: 20;
+    opacity: 0;
+  }
+  .subhead.visible { opacity: 1; }
+  /* Entity label under portrait */
+  .entity-label {
+    position: absolute;
+    font-weight: 600;
+    font-size: 20px;
+    color: #0F172A;
+    text-align: center;
+    z-index: 35;
+    opacity: 0;
+  }
+  .entity-label.visible { opacity: 1; }
+  /* Scene transition overlay */
+  .transition {
+    position: absolute; inset: 0; background: #FFFFFF; z-index: 50; opacity: 0; pointer-events: none;
+  }
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<div class="stage" id="stage"></div>
+<div class="caption" id="caption"></div>
+<div class="transition" id="transition"></div>
+
+<script>
+/**
+ * Short White Editorial runtime.
+ * Driven by the unified produce.ts orchestrator: it injects scenes, entities,
+ * portraits, logos, and word captions via window.__EDITORIAL__.
+ *
+ * Hyperframes-compatible frame barrier for Playwright capture rendering.
+ */
+window.__frameBarrier = { settle: () => Promise.resolve() };
+window.__setFrame = (f) => {
+  const data = window.__EDITORIAL__;
+  if (!data) return;
+  const totalFrames = data.fps * data.durationSec;
+  const progress = Math.min(1, Math.max(0, f / totalFrames));
+  if (window.__timelines && window.__timelines["main"]) {
+    window.__timelines["main"].progress(progress);
+  }
+};
+const W = 1080, H = 1920;
+const stage = document.getElementById("stage");
+const captionEl = document.getElementById("caption");
+const tl = gsap.timeline({ paused: true });
+window.__timelines = window.__timelines || {};
+window.__timelines["main"] = tl;
+
+// Injected by produce.ts:
+//   window.__EDITORIAL__ = {
+//     theme: "white-editorial",
+//     aspectRatio: "9:16",
+//     fps: 60,
+//     durationSec: 60,
+//     assets: { portrait_JensenHuang: "assets/cutouts/jensen_huang.png", logo_nvidia: "assets/logos/nvidia.svg", ... },
+//     scenes: [ { id, startSec, endSec, hero, subhead, entities: [{kind:"portrait", assetId, x,y,w,h,label},{kind:"logo", assetId, x,y,w,h}], captionWords: [{w,start,end}], ... } ]
+//   };
+
+function injectEditorial(data) {
+  // Build DOM nodes for each scene's entities.
+  for (const scene of data.scenes) {
+    const sEl = document.createElement("div");
+    sEl.id = "scene_" + scene.id;
+    sEl.style.position = "absolute";
+    sEl.style.inset = "0";
+    sEl.style.opacity = "0";
+    sEl.style.zIndex = "10";
+    stage.appendChild(sEl);
+
+    for (const ent of scene.entities) {
+      if (ent.kind === "portrait") {
+        const wrap = document.createElement("div");
+        wrap.className = "portrait-slot";
+        wrap.style.left = ent.x + "px";
+        wrap.style.top = ent.y + "px";
+        wrap.style.width = ent.w + "px";
+        wrap.style.height = ent.h + "px";
+        const img = document.createElement("img");
+        img.className = "portrait-img";
+        img.src = data.assets[ent.assetId];
+        img.alt = ent.label || ent.assetId;
+        wrap.appendChild(img);
+        sEl.appendChild(wrap);
+
+        if (ent.label) {
+          const lbl = document.createElement("div");
+          lbl.className = "entity-label";
+          lbl.style.left = (ent.x + ent.w / 2 - 120) + "px";
+          lbl.style.top = (ent.y + ent.h + 16) + "px";
+          lbl.style.width = "240px";
+          lbl.textContent = ent.label;
+          sEl.appendChild(lbl);
+          tl.fromTo(lbl, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, scene.startSec);
+        }
+        tl.fromTo(wrap, { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.7, ease: "power2.out" }, scene.startSec);
+      } else if (ent.kind === "logo") {
+        const wrap = document.createElement("div");
+        wrap.className = "logo-slot";
+        wrap.style.left = ent.x + "px";
+        wrap.style.top = ent.y + "px";
+        wrap.style.width = ent.w + "px";
+        wrap.style.height = ent.h + "px";
+        const img = document.createElement("img");
+        img.className = "logo-img";
+        img.src = data.assets[ent.assetId];
+        img.alt = ent.label || ent.assetId;
+        wrap.appendChild(img);
+        sEl.appendChild(wrap);
+        tl.fromTo(wrap, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" }, scene.startSec);
+      }
+    }
+
+    // Hero / subhead text
+    if (scene.hero) {
+      const h = document.createElement("div");
+      h.className = "hero";
+      h.textContent = scene.hero;
+      stage.appendChild(h);
+      tl.fromTo(h, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, scene.startSec);
+    }
+    if (scene.subhead) {
+      const s = document.createElement("div");
+      s.className = "subhead";
+      s.textContent = scene.subhead;
+      stage.appendChild(s);
+      tl.fromTo(s, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, scene.startSec + 0.3);
+    }
+
+    // Scene fade out at end
+    tl.to("#scene_" + scene.id, { opacity: 0, duration: 0.5 }, scene.endSec - 0.5);
+  }
+
+  // Kinetic word captions synced to voice word clock
+  for (const scene of data.scenes) {
+    for (const w of scene.captionWords) {
+      tl.fromTo(captionEl, { opacity: 0 }, {
+        opacity: 1,
+        textContent: w.w,
+        duration: Math.max(0.15, w.end - w.start),
+        ease: "none",
+      }, w.start);
+      tl.to(captionEl, { opacity: 0, duration: 0.15 }, w.end);
+    }
+  }
+
+  tl.pause();
+  window.__setFrame = (f) => { tl.progress(f / (data.fps * data.durationSec)); };
+}
+
+// Auto-inject when data is available
+if (window.__EDITORIAL__) {
+  injectEditorial(window.__EDITORIAL__);
+}
+</script>
+</body>
+</html>

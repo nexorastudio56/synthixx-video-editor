@@ -1,0 +1,16 @@
+import type { Component } from "./types.js";
+import { browser } from "./interfaces/browser.js";
+import { terminal } from "./interfaces/terminal.js";
+import { chat } from "./interfaces/chat.js";
+import { workflow } from "./interfaces/workflow.js";
+import { dashboard } from "./interfaces/dashboard.js";
+import { logo, cutout, icon, device, card, particles } from "./objects/stage.js";
+import { anchorCore } from "./archetypes/BrandAnchorCore.js";
+import { orbitalHub } from "./archetypes/OrbitalToolHub.js";
+import { cardDeck } from "./archetypes/CardDeckFan3D.js";
+import { roadmap } from "./archetypes/SplineRoadmap3D.js";
+import { kineticWords } from "./archetypes/KineticWordSync.js";
+import { uiSim } from "./archetypes/InteractiveUISimulator.js";
+const ALL: Component[] = [browser, terminal, chat, workflow, dashboard, logo, cutout, icon, device, card, particles, anchorCore, orbitalHub, cardDeck, roadmap, kineticWords, uiSim];
+export const REGISTRY = new Map<string, Component>();
+for (const c of ALL) for (const k of c.kind) REGISTRY.set(k, c);

@@ -1,0 +1,605 @@
+{
+ "phrases": [
+  {
+   "text": "Stop using AI like a basic chatbot.",
+   "start": 0.3,
+   "end": 2.76
+  },
+  {
+   "text": "Right now, an autonomous AI agent can open a browser, search live data,",
+   "start": 2.969,
+   "end": 7.397
+  },
+  {
+   "text": "and write Python code all by itself.",
+   "start": 7.481,
+   "end": 9.542
+  },
+  {
+   "text": "Watch how it works.",
+   "start": 9.794,
+   "end": 10.911
+  },
+  {
+   "text": "First, the agent connects to OpenAI and scans thousands of files in a terminal.",
+   "start": 11.126,
+   "end": 15.803
+  },
+  {
+   "text": "Next, it builds a complete automation workflow, sends an instant alert,",
+   "start": 16.027,
+   "end": 20.024
+  },
+  {
+   "text": "and boosts your productivity by 10x.",
+   "start": 20.148,
+   "end": 22.335
+  },
+  {
+   "text": "The future is not just chatting with AI\u2014",
+   "start": 22.534,
+   "end": 24.599
+  },
+  {
+   "text": "it is letting AI do the work for you.",
+   "start": 24.724,
+   "end": 26.717
+  }
+ ],
+ "words": [
+  {
+   "w": "Stop",
+   "start": 0.3,
+   "end": 0.546,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "using",
+   "start": 0.568,
+   "end": 0.968,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "AI",
+   "start": 1.003,
+   "end": 1.249,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "like",
+   "start": 1.271,
+   "end": 1.517,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "a",
+   "start": 1.538,
+   "end": 1.785,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "basic",
+   "start": 1.806,
+   "end": 2.206,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "chatbot.",
+   "start": 2.241,
+   "end": 2.719,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "Right",
+   "start": 2.969,
+   "end": 3.191,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "now,",
+   "start": 3.211,
+   "end": 3.503,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "an",
+   "start": 3.528,
+   "end": 3.751,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "autonomous",
+   "start": 3.77,
+   "end": 4.409,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "AI",
+   "start": 4.465,
+   "end": 4.687,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "agent",
+   "start": 4.707,
+   "end": 5.068,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "can",
+   "start": 5.1,
+   "end": 5.322,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "open",
+   "start": 5.341,
+   "end": 5.703,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "a",
+   "start": 5.734,
+   "end": 5.957,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "browser,",
+   "start": 5.976,
+   "end": 6.407,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "search",
+   "start": 6.445,
+   "end": 6.667,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "live",
+   "start": 6.686,
+   "end": 6.909,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "data,",
+   "start": 6.928,
+   "end": 7.359,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "and",
+   "start": 7.481,
+   "end": 7.702,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "write",
+   "start": 7.721,
+   "end": 7.943,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "Python",
+   "start": 7.962,
+   "end": 8.322,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "code",
+   "start": 8.353,
+   "end": 8.575,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "all",
+   "start": 8.594,
+   "end": 8.816,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "by",
+   "start": 8.835,
+   "end": 9.056,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "itself.",
+   "start": 9.076,
+   "end": 9.505,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "Watch",
+   "start": 9.794,
+   "end": 10.033,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "how",
+   "start": 10.053,
+   "end": 10.292,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "it",
+   "start": 10.312,
+   "end": 10.551,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "works.",
+   "start": 10.571,
+   "end": 10.884,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "First,",
+   "start": 11.126,
+   "end": 11.414,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "the",
+   "start": 11.439,
+   "end": 11.658,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "agent",
+   "start": 11.677,
+   "end": 12.033,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "connects",
+   "start": 12.064,
+   "end": 12.421,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "to",
+   "start": 12.452,
+   "end": 12.671,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "OpenAI",
+   "start": 12.69,
+   "end": 13.183,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "and",
+   "start": 13.226,
+   "end": 13.445,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "scans",
+   "start": 13.465,
+   "end": 13.684,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "thousands",
+   "start": 13.703,
+   "end": 14.059,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "of",
+   "start": 14.09,
+   "end": 14.309,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "files",
+   "start": 14.328,
+   "end": 14.685,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "in",
+   "start": 14.716,
+   "end": 14.935,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "a",
+   "start": 14.954,
+   "end": 15.173,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "terminal.",
+   "start": 15.192,
+   "end": 15.754,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "Next,",
+   "start": 16.027,
+   "end": 16.323,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "it",
+   "start": 16.349,
+   "end": 16.574,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "builds",
+   "start": 16.594,
+   "end": 16.819,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "a",
+   "start": 16.839,
+   "end": 17.064,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "complete",
+   "start": 17.084,
+   "end": 17.45,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "automation",
+   "start": 17.482,
+   "end": 18.13,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "workflow,",
+   "start": 18.186,
+   "end": 18.623,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "sends",
+   "start": 18.661,
+   "end": 18.886,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "an",
+   "start": 18.906,
+   "end": 19.131,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "instant",
+   "start": 19.151,
+   "end": 19.517,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "alert,",
+   "start": 19.549,
+   "end": 19.986,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "and",
+   "start": 20.148,
+   "end": 20.376,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "boosts",
+   "start": 20.396,
+   "end": 20.624,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "your",
+   "start": 20.644,
+   "end": 20.872,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "productivity",
+   "start": 20.892,
+   "end": 21.691,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "by",
+   "start": 21.761,
+   "end": 21.989,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "10x.",
+   "start": 22.009,
+   "end": 22.309,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "The",
+   "start": 22.534,
+   "end": 22.74,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "future",
+   "start": 22.758,
+   "end": 23.091,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "is",
+   "start": 23.12,
+   "end": 23.326,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "not",
+   "start": 23.343,
+   "end": 23.549,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "just",
+   "start": 23.567,
+   "end": 23.772,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "chatting",
+   "start": 23.79,
+   "end": 24.123,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "with",
+   "start": 24.152,
+   "end": 24.358,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "AI\u2014",
+   "start": 24.376,
+   "end": 24.581,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "it",
+   "start": 24.724,
+   "end": 24.909,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "is",
+   "start": 24.925,
+   "end": 25.109,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "letting",
+   "start": 25.125,
+   "end": 25.425,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "AI",
+   "start": 25.451,
+   "end": 25.636,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "do",
+   "start": 25.652,
+   "end": 25.836,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "the",
+   "start": 25.852,
+   "end": 26.037,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "work",
+   "start": 26.053,
+   "end": 26.237,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "for",
+   "start": 26.253,
+   "end": 26.438,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "you.",
+   "start": 26.454,
+   "end": 26.696,
+   "conf": 0.6,
+   "est": true
+  }
+ ],
+ "total": 27.217
+}

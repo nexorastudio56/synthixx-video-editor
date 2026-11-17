@@ -1,0 +1,42 @@
+{
+ "name": "synthixx-video-editor",
+ "version": "0.1.0",
+ "private": true,
+ "type": "module",
+ "scripts": {
+  "validate": "tsx core/compiler/cli.ts",
+  "generate-video": "tsx cli.ts",
+  "studio": "tsx apps/studio/server.ts",
+  "test:phase0": "tsx tests/test-phase0.ts",
+  "test:phase1": "tsx tests/test-phase1.ts",
+  "test:phase2": "tsx tests/test-phase2.ts",
+  "test:phase3": "tsx tests/test-phase3.ts",
+  "test:manifest": "tsx tests/production/test-manifest.ts",
+  "test:orchestrator": "tsx tests/production/test-orchestrator.ts",
+  "typecheck": "tsc --noEmit",
+  "storyboard": "tsx cli.ts --storyboard-only"
+ },
+ "dependencies": {
+  "@dimforge/rapier3d-compat": "^0.14.0",
+  "@types/node": "^26.6.6",
+  "@types/three": "^0.169.0",
+  "esbuild": "^0.28.2",
+  "playwright": "^1.65.1",
+  "playwright-core": "^1.49.1",
+  "react": "^18.3.1",
+  "react-dom": "^18.3.1",
+  "sharp": "^0.35.5",
+  "simple-icons": "^16.37.0",
+  "three": "^0.169.0",
+  "tsx": "^4.23.15",
+  "typescript": "^7.0.2",
+  "zod": "^3.25.76"
+ },
+ "devDependencies": {
+  "@types/react": "^18.3.31",
+  "@types/react-dom": "^18.3.7"
+ },
+ "allowScripts": {
+  "esbuild@0.28.2": true
+ }
+}

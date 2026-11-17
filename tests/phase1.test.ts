@@ -1,0 +1,20 @@
+import fs from "node:fs";
+import { validateScene, formatRepairPrompt } from "../core/compiler/validateScene.js";
+import { SceneGraph } from "../schemas/scene.schema.js";
+let fail = 0; const t = (n: string, c: boolean) => { console.log(c ? "PASS" : "FAIL", n); if (!c) fail++; };
+const good = validateScene(JSON.parse(fs.readFileSync("samples/agent.scene.json", "utf8")), { projectRoot: "/nonexistent" });
+// asset files do not exist yet -> only ASSET_FILE_MISSING expected here
+const noFile = validateScene(JSON.parse(fs.readFileSync("samples/agent.scene.json", "utf8")));
+t("good sample passes (no file check)", noFile.ok);
+t("good sample warns about nothing fatal", noFile.errors.length === 0);
+t("file check catches missing assets", good.errors.some(e => e.code === "ASSET_FILE_MISSING"));
+const bad = validateScene(JSON.parse(fs.readFileSync("samples/agent.bad.scene.json", "utf8")));
+const codes = new Set(bad.errors.map(e => e.code));
+for (const c of ["CAPABILITY_UNSUPPORTED", "ACTION_ENTITY_MISSING", "SCENE_GAP", "ASSET_MISSING", "PLACEMENT_MISSING", "ACTION_TARGET_REQUIRED", "ACTION_BEFORE_APPEAR"]) t("bad sample reports " + c, codes.has(c));
+const shape = validateScene({ schemaVersion: 1, title: "x" });
+t("schema errors are structured", !shape.ok && shape.errors.every(e => e.repair.length > 5 && e.path.length > 0));
+const det = JSON.stringify(validateScene(JSON.parse(fs.readFileSync("samples/agent.bad.scene.json", "utf8"))).errors) === JSON.stringify(bad.errors);
+t("validator is deterministic", det);
+console.log("\n--- repair prompt for the bad sample ---\n" + formatRepairPrompt(bad));
+console.log(`\nstats good: ${JSON.stringify(noFile.stats)}  warnings: ${noFile.warnings.length}`);
+process.exit(fail ? 1 : 0);

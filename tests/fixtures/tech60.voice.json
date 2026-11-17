@@ -1,0 +1,1383 @@
+{
+ "phrases": [
+  {
+   "text": "Most teams still copy data between tools by hand.",
+   "start": 0.3,
+   "end": 3.194
+  },
+  {
+   "text": "An AI agent can do that work for you.",
+   "start": 3.447,
+   "end": 5.662
+  },
+  {
+   "text": "Watch what happens when you give it a goal.",
+   "start": 5.892,
+   "end": 7.818
+  },
+  {
+   "text": "First, the agent opens a browser and searches live data about your competitors.",
+   "start": 8.06,
+   "end": 12.53
+  },
+  {
+   "text": "Next, it writes Python code in an editor and runs it in a terminal,",
+   "start": 12.755,
+   "end": 16.326
+  },
+  {
+   "text": "scanning thousands of files in seconds.",
+   "start": 16.421,
+   "end": 18.563
+  },
+  {
+   "text": "Then it connects GitHub and OpenAI into one automation workflow.",
+   "start": 18.774,
+   "end": 22.708
+  },
+  {
+   "text": "When something breaks, it sends an instant alert to your team.",
+   "start": 22.93,
+   "end": 26.17
+  },
+  {
+   "text": "Here is the result.",
+   "start": 26.375,
+   "end": 27.482
+  },
+  {
+   "text": "Reports that took ten hours now take ten minutes, and productivity grows by 10x.",
+   "start": 27.698,
+   "end": 32.676
+  },
+  {
+   "text": "A dashboard tracks every task in real time.",
+   "start": 32.904,
+   "end": 35.407
+  },
+  {
+   "text": "You do not write the steps anymore.",
+   "start": 35.642,
+   "end": 37.378
+  },
+  {
+   "text": "You describe the outcome, and the agent builds the pipeline.",
+   "start": 37.596,
+   "end": 40.746
+  },
+  {
+   "text": "Start with one small workflow this week.",
+   "start": 40.984,
+   "end": 43.07
+  },
+  {
+   "text": "Then let the agent grow it.",
+   "start": 43.312,
+   "end": 44.795
+  },
+  {
+   "text": "The teams that learn this first will move faster than everyone else.",
+   "start": 44.997,
+   "end": 48.246
+  },
+  {
+   "text": "Every morning the agent checks your inbox, summarizes the news,",
+   "start": 48.489,
+   "end": 51.965
+  },
+  {
+   "text": "and prepares a clean report before you finish your coffee.",
+   "start": 52.088,
+   "end": 54.755
+  },
+  {
+   "text": "Nothing gets lost, nothing gets forgotten, and your team stays focused on real work.",
+   "start": 54.951,
+   "end": 59.6
+  }
+ ],
+ "words": [
+  {
+   "w": "Most",
+   "start": 0.3,
+   "end": 0.538,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "teams",
+   "start": 0.559,
+   "end": 0.797,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "still",
+   "start": 0.817,
+   "end": 1.055,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "copy",
+   "start": 1.076,
+   "end": 1.463,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "data",
+   "start": 1.496,
+   "end": 1.883,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "between",
+   "start": 1.917,
+   "end": 2.303,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "tools",
+   "start": 2.337,
+   "end": 2.575,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "by",
+   "start": 2.596,
+   "end": 2.834,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "hand.",
+   "start": 2.854,
+   "end": 3.167,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "An",
+   "start": 3.447,
+   "end": 3.652,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "AI",
+   "start": 3.67,
+   "end": 3.875,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "agent",
+   "start": 3.893,
+   "end": 4.226,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "can",
+   "start": 4.255,
+   "end": 4.46,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "do",
+   "start": 4.478,
+   "end": 4.683,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "that",
+   "start": 4.701,
+   "end": 4.906,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "work",
+   "start": 4.924,
+   "end": 5.128,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "for",
+   "start": 5.146,
+   "end": 5.351,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "you.",
+   "start": 5.369,
+   "end": 5.638,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "Watch",
+   "start": 5.892,
+   "end": 6.071,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "what",
+   "start": 6.086,
+   "end": 6.264,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "happens",
+   "start": 6.28,
+   "end": 6.57,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "when",
+   "start": 6.595,
+   "end": 6.773,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "you",
+   "start": 6.789,
+   "end": 6.967,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "give",
+   "start": 6.983,
+   "end": 7.161,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "it",
+   "start": 7.176,
+   "end": 7.355,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "a",
+   "start": 7.37,
+   "end": 7.548,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "goal.",
+   "start": 7.564,
+   "end": 7.798,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "First,",
+   "start": 8.06,
+   "end": 8.341,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "the",
+   "start": 8.365,
+   "end": 8.579,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "agent",
+   "start": 8.597,
+   "end": 8.945,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "opens",
+   "start": 8.975,
+   "end": 9.322,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "a",
+   "start": 9.352,
+   "end": 9.566,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "browser",
+   "start": 9.584,
+   "end": 9.931,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "and",
+   "start": 9.962,
+   "end": 10.175,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "searches",
+   "start": 10.194,
+   "end": 10.541,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "live",
+   "start": 10.571,
+   "end": 10.785,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "data",
+   "start": 10.803,
+   "end": 11.151,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "about",
+   "start": 11.181,
+   "end": 11.528,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "your",
+   "start": 11.558,
+   "end": 11.772,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "competitors.",
+   "start": 11.79,
+   "end": 12.471,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "Next,",
+   "start": 12.755,
+   "end": 12.989,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "it",
+   "start": 13.01,
+   "end": 13.189,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "writes",
+   "start": 13.204,
+   "end": 13.495,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "Python",
+   "start": 13.52,
+   "end": 13.811,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "code",
+   "start": 13.836,
+   "end": 14.015,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "in",
+   "start": 14.03,
+   "end": 14.209,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "an",
+   "start": 14.224,
+   "end": 14.403,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "editor",
+   "start": 14.419,
+   "end": 14.821,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "and",
+   "start": 14.856,
+   "end": 15.035,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "runs",
+   "start": 15.05,
+   "end": 15.229,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "it",
+   "start": 15.245,
+   "end": 15.424,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "in",
+   "start": 15.439,
+   "end": 15.618,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "a",
+   "start": 15.634,
+   "end": 15.812,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "terminal,",
+   "start": 15.828,
+   "end": 16.286,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "scanning",
+   "start": 16.421,
+   "end": 16.784,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "thousands",
+   "start": 16.816,
+   "end": 17.179,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "of",
+   "start": 17.211,
+   "end": 17.434,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "files",
+   "start": 17.454,
+   "end": 17.817,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "in",
+   "start": 17.849,
+   "end": 18.072,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "seconds.",
+   "start": 18.092,
+   "end": 18.525,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "Then",
+   "start": 18.774,
+   "end": 19.001,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "it",
+   "start": 19.021,
+   "end": 19.248,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "connects",
+   "start": 19.268,
+   "end": 19.637,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "GitHub",
+   "start": 19.669,
+   "end": 20.038,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "and",
+   "start": 20.07,
+   "end": 20.297,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "OpenAI",
+   "start": 20.317,
+   "end": 20.828,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "into",
+   "start": 20.872,
+   "end": 21.241,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "one",
+   "start": 21.273,
+   "end": 21.5,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "automation",
+   "start": 21.52,
+   "end": 22.173,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "workflow.",
+   "start": 22.23,
+   "end": 22.67,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "When",
+   "start": 22.93,
+   "end": 23.141,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "something",
+   "start": 23.159,
+   "end": 23.634,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "breaks,",
+   "start": 23.675,
+   "end": 23.952,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "it",
+   "start": 23.976,
+   "end": 24.187,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "sends",
+   "start": 24.206,
+   "end": 24.417,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "an",
+   "start": 24.435,
+   "end": 24.646,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "instant",
+   "start": 24.664,
+   "end": 25.007,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "alert",
+   "start": 25.037,
+   "end": 25.38,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "to",
+   "start": 25.41,
+   "end": 25.621,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "your",
+   "start": 25.639,
+   "end": 25.85,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "team.",
+   "start": 25.869,
+   "end": 26.146,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "Here",
+   "start": 26.375,
+   "end": 26.582,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "is",
+   "start": 26.599,
+   "end": 26.806,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "the",
+   "start": 26.824,
+   "end": 27.03,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "result.",
+   "start": 27.048,
+   "end": 27.447,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "Reports",
+   "start": 27.698,
+   "end": 28.09,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "that",
+   "start": 28.124,
+   "end": 28.365,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "took",
+   "start": 28.386,
+   "end": 28.627,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "ten",
+   "start": 28.648,
+   "end": 28.889,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "hours",
+   "start": 28.91,
+   "end": 29.151,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "now",
+   "start": 29.172,
+   "end": 29.413,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "take",
+   "start": 29.434,
+   "end": 29.675,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "ten",
+   "start": 29.696,
+   "end": 29.937,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "minutes,",
+   "start": 29.958,
+   "end": 30.575,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "and",
+   "start": 30.629,
+   "end": 30.87,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "productivity",
+   "start": 30.891,
+   "end": 31.735,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "grows",
+   "start": 31.808,
+   "end": 32.049,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "by",
+   "start": 32.07,
+   "end": 32.311,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "10x.",
+   "start": 32.332,
+   "end": 32.648,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "A",
+   "start": 32.904,
+   "end": 33.13,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "dashboard",
+   "start": 33.149,
+   "end": 33.517,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "tracks",
+   "start": 33.549,
+   "end": 33.775,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "every",
+   "start": 33.795,
+   "end": 34.303,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "task",
+   "start": 34.348,
+   "end": 34.574,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "in",
+   "start": 34.593,
+   "end": 34.819,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "real",
+   "start": 34.839,
+   "end": 35.065,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "time.",
+   "start": 35.085,
+   "end": 35.382,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "You",
+   "start": 35.642,
+   "end": 35.829,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "do",
+   "start": 35.845,
+   "end": 36.031,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "not",
+   "start": 36.048,
+   "end": 36.234,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "write",
+   "start": 36.25,
+   "end": 36.437,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "the",
+   "start": 36.453,
+   "end": 36.64,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "steps",
+   "start": 36.656,
+   "end": 36.842,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "anymore.",
+   "start": 36.858,
+   "end": 37.336,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "You",
+   "start": 37.596,
+   "end": 37.806,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "describe",
+   "start": 37.825,
+   "end": 38.167,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "the",
+   "start": 38.197,
+   "end": 38.408,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "outcome,",
+   "start": 38.426,
+   "end": 38.834,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "and",
+   "start": 38.87,
+   "end": 39.081,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "the",
+   "start": 39.099,
+   "end": 39.31,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "agent",
+   "start": 39.328,
+   "end": 39.671,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "builds",
+   "start": 39.7,
+   "end": 39.911,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "the",
+   "start": 39.93,
+   "end": 40.14,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "pipeline.",
+   "start": 40.159,
+   "end": 40.699,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "Start",
+   "start": 40.984,
+   "end": 41.225,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "with",
+   "start": 41.246,
+   "end": 41.488,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "one",
+   "start": 41.509,
+   "end": 41.751,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "small",
+   "start": 41.772,
+   "end": 42.014,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "workflow",
+   "start": 42.035,
+   "end": 42.428,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "this",
+   "start": 42.462,
+   "end": 42.704,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "week.",
+   "start": 42.725,
+   "end": 43.042,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "Then",
+   "start": 43.312,
+   "end": 43.509,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "let",
+   "start": 43.526,
+   "end": 43.722,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "the",
+   "start": 43.739,
+   "end": 43.936,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "agent",
+   "start": 43.953,
+   "end": 44.273,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "grow",
+   "start": 44.3,
+   "end": 44.497,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "it.",
+   "start": 44.514,
+   "end": 44.772,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "The",
+   "start": 44.997,
+   "end": 45.207,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "teams",
+   "start": 45.226,
+   "end": 45.436,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "that",
+   "start": 45.455,
+   "end": 45.666,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "learn",
+   "start": 45.684,
+   "end": 45.895,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "this",
+   "start": 45.913,
+   "end": 46.124,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "first",
+   "start": 46.142,
+   "end": 46.353,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "will",
+   "start": 46.371,
+   "end": 46.582,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "move",
+   "start": 46.6,
+   "end": 46.811,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "faster",
+   "start": 46.829,
+   "end": 47.171,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "than",
+   "start": 47.201,
+   "end": 47.412,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "everyone",
+   "start": 47.43,
+   "end": 47.904,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "else.",
+   "start": 47.946,
+   "end": 48.222,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "Every",
+   "start": 48.489,
+   "end": 48.95,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "morning",
+   "start": 48.99,
+   "end": 49.322,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "the",
+   "start": 49.351,
+   "end": 49.556,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "agent",
+   "start": 49.574,
+   "end": 49.906,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "checks",
+   "start": 49.935,
+   "end": 50.14,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "your",
+   "start": 50.158,
+   "end": 50.362,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "inbox,",
+   "start": 50.38,
+   "end": 50.777,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "summarizes",
+   "start": 50.811,
+   "end": 51.399,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "the",
+   "start": 51.451,
+   "end": 51.655,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "news,",
+   "start": 51.673,
+   "end": 51.942,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "and",
+   "start": 52.088,
+   "end": 52.262,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "prepares",
+   "start": 52.277,
+   "end": 52.67,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "a",
+   "start": 52.704,
+   "end": 52.879,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "clean",
+   "start": 52.894,
+   "end": 53.069,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "report",
+   "start": 53.084,
+   "end": 53.367,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "before",
+   "start": 53.392,
+   "end": 53.676,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "you",
+   "start": 53.7,
+   "end": 53.875,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "finish",
+   "start": 53.89,
+   "end": 54.173,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "your",
+   "start": 54.198,
+   "end": 54.373,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "coffee.",
+   "start": 54.388,
+   "end": 54.726,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "Nothing",
+   "start": 54.951,
+   "end": 55.323,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "gets",
+   "start": 55.355,
+   "end": 55.584,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "lost,",
+   "start": 55.604,
+   "end": 55.904,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "nothing",
+   "start": 55.93,
+   "end": 56.302,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "gets",
+   "start": 56.335,
+   "end": 56.563,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "forgotten,",
+   "start": 56.583,
+   "end": 57.17,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "and",
+   "start": 57.221,
+   "end": 57.45,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "your",
+   "start": 57.47,
+   "end": 57.698,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "team",
+   "start": 57.718,
+   "end": 57.947,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "stays",
+   "start": 57.967,
+   "end": 58.196,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "focused",
+   "start": 58.216,
+   "end": 58.731,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "on",
+   "start": 58.776,
+   "end": 59.005,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "real",
+   "start": 59.024,
+   "end": 59.253,
+   "conf": 0.6,
+   "est": true
+  },
+  {
+   "w": "work.",
+   "start": 59.273,
+   "end": 59.574,
+   "conf": 0.6,
+   "est": true
+  }
+ ],
+ "total": 60.1
+}
