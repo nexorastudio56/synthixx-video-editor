@@ -26,11 +26,17 @@
 
 ### 📹 Full Demo Videos
 
-| Video | Topic | Duration | Resolution | Watch |
-|-------|-------|----------|------------|-------|
-| NVIDIA CEO Comeback | NVIDIA leadership shake-up | 60s | 1080×1920 | [▶ Watch](showcase/nvidia_ceo_comeback.mp4) |
-| MS365 Outage | Microsoft 365 service outage | 60s | 1080×1920 | [▶ Watch](showcase/ms365_outage.mp4) |
-| MS365 Outage v2 | Microsoft 365 outage (alt cut) | 60s | 1080×1920 | [▶ Watch](showcase/ms365_outage_v2.mp4) |
+<p align="center">
+  <video src="https://raw.githubusercontent.com/nexorastudio56/synthixx-video-editor/main/showcase/nvidia_ceo_comeback.mp4" width="360" controls></video>
+  &nbsp;
+  <video src="https://raw.githubusercontent.com/nexorastudio56/synthixx-video-editor/main/showcase/ms365_outage.mp4" width="360" controls></video>
+</p>
+
+| Video | Topic | Duration | Resolution | Download |
+|-------|-------|----------|------------|----------|
+| NVIDIA CEO Comeback | NVIDIA leadership shake-up | 60s | 1080×1920 | [⬇ Download](showcase/nvidia_ceo_comeback.mp4) |
+| MS365 Outage | Microsoft 365 service outage | 60s | 1080×1920 | [⬇ Download](showcase/ms365_outage.mp4) |
+| MS365 Outage v2 | Microsoft 365 outage (alt cut) | 60s | 1080×1920 | [⬇ Download](showcase/ms365_outage_v2.mp4) |
 
 ---
 
