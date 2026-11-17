@@ -37,7 +37,8 @@ const { values: v } = parseArgs({ options: {
   script: { type: "string" },
   ratio: { type: "string", default: "9:16" },
   theme: { type: "string", default: "white-editorial" },
-  fps: { type: "string", default: "60" },
+  fps: { type: "string", default: "30" },
+  fast: { type: "boolean", default: false },
   out: { type: "string" },
   voice: { type: "string" },
   "no-music": { type: "boolean", default: false },
@@ -52,8 +53,10 @@ if (!v.script || !fs.existsSync(v.script)) fail("--script <file> required and mu
 if (!["9:16", "16:9"].includes(v.ratio!)) fail("--ratio must be 9:16 or 16:9");
 if (!["white-editorial", "dark-cinematic"].includes(v.theme!)) fail("--theme must be white-editorial or dark-cinematic");
 
-const fps = +v.fps! as 24 | 30 | 60;
-const { width: W, height: H } = CANVAS[v.ratio as "9:16" | "16:9"];
+const fps = (v.fast ? 30 : +v.fps!) as 24 | 30 | 60;
+const { width: W, height: H } = v.fast
+  ? (v.ratio === "9:16" ? { width: 720, height: 1280 } : { width: 1280, height: 720 })
+  : CANVAS[v.ratio as "9:16" | "16:9"];
 const root = path.resolve(import.meta.dirname);
 const name = path.parse(v.script!).name;
 const tag = v.theme!;
