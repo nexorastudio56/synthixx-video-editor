@@ -43,7 +43,7 @@ My flagship product — **50× faster** than any other video tool:
 ### 📫 Connect
 
 - 🌐 Website: [synthixx.com](https://synthixx.com)
-- 📧 Email: contact@synthixx.com
+- 📧 Email: info@synthixx.com
 - 🐙 GitHub: [@synthixx](https://github.com/synthixx)
 
 ---

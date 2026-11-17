@@ -98,7 +98,7 @@ His expertise spans:
 ## 📞 Contact
 
 - **GitHub**: [github.com/synthixx](https://github.com/synthixx)
-- **Email**: contact@synthixx.com
+- **Email**: info@synthixx.com
 - **Website**: https://synthixx.com
 - **Location**: Azad Kashmir
 
