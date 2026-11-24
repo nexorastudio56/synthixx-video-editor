@@ -68,7 +68,7 @@ if (v["storyboard-only"]) { step("storyboard-only: done (no video rendered)"); p
 
 step(`4/6 resumable chunk render (cpu-dom x${v.workers}, gpu-heavy x1, chunk<=${v["chunk-frames"]}f, quality=${v.quality})`);
 const budget = v.budget ? +v.budget : undefined; const jobId = v["job-id"] ?? `${name}_${tag}_${v.ratio!.replace(":", "x")}`; const final = path.join(outDir, `${jobId}.mp4`);
-const renderAll = async () => orchestrate({ jobId, projectsRoot: path.join(root, v["jobs-root"]!), graph: g, renderer: scenePageChunkRenderer({ projectDir: proj }), out: final, audioPath: mix.path, projectDir: proj, maxChunkFrames: +v["chunk-frames"]!, cpuConcurrency: Math.min(3, Math.max(2, +v.workers!)), quality: v.quality!, budgetSec: budget, log: step });
+const renderAll = async () => orchestrate({ jobId, projectsRoot: path.join(root, v["jobs-root"]!), graph: g, renderer: scenePageChunkRenderer({ projectDir: proj, quality: v.quality as "draft" | "looks" | "delivery" }), out: final, audioPath: mix.path, projectDir: proj, maxChunkFrames: +v["chunk-frames"]!, cpuConcurrency: Math.min(3, Math.max(2, +v.workers!)), quality: v.quality!, budgetSec: budget, log: step });
 let r = await renderAll();
 if (!r.complete) { step(`PAUSED: ${r.pending} chunk(s) still pending (time-boxed). Re-run the same command; verified chunks are skipped via projects/${jobId}/manifest.json.`); process.exit(3); }
 step(`5/6 assembled by orchestrator (${r.skipped} chunk(s) reused, ${r.rendered} rendered; audio muxed once)`);
