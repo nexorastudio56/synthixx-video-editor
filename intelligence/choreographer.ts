@@ -3,6 +3,7 @@ import { CANVAS, type Archetype, type Entity, type Action, type VideoScene, type
 import type { Clause, Comp } from "./narrative.js";
 import type { ResolvedEntity } from "./entityResolver.js";
 import { CAMERA_PRESETS, pickMostNovel, type VisualMemory, type CameraPreset } from "./memory.js";
+import { routeDirectorSkill } from "./directorSkill.js";
 
 export interface Ctx { fps: number; aspect: "9:16" | "16:9"; words: Word[]; resolved: ResolvedEntity[]; memory: VisualMemory; durationFrames: number }
 const F = (t: number, fps: number) => Math.round(t * fps);
@@ -23,18 +24,9 @@ export function groupScenes(clauses: Clause[], minS = 5, maxS = 12): Clause[][] 
   return groups;
 }
 
-/** ---- archetype candidates from cue composition ---- */
-function candidates(comps: Comp[], split: boolean): Archetype[] {
-  const has = (c: Comp) => comps.includes(c);
-  if (split) return ["split_comparison", "before_after", "hero_object"];
-  if (has("terminal")) return ["terminal_run", "process_simulation", "live_ui_action"];
-  if (has("workflow")) return ["workflow_build", "network_graph", "process_simulation"];
-  if (has("chat")) return ["chat_conversation", "live_ui_action", "device_showcase"];
-  if (has("metric") || has("dashboard")) return ["kinetic_data", "metric_reveal", "timeline_journey"];
-  if (has("alert")) return ["notification_cascade", "orbit_system"];
-  if (has("browser") || has("code")) return ["live_ui_action", "process_simulation", "exploded_view"];
-  if (has("brand")) return ["network_graph", "orbit_system", "hero_object"];
-  return ["hero_object", "environmental_story", "device_showcase"];
+/** ---- archetype candidates from the 24-primitive deterministic director ---- */
+function candidates(comps: Comp[], split: boolean, text: string): Archetype[] {
+  return routeDirectorSkill(text, comps, split).candidates;
 }
 
 /** ---- layout: adaptive per aspect ratio ---- */
@@ -112,7 +104,7 @@ export function choreograph(groups: Clause[][], ctx: Ctx): { scenes: VideoScene[
     for (const e of ents) if (!has.has(e.id)) { const ev = events[0]; ev.actions.unshift({ id: `a_${++ai}`, entityId: e.id, type: "appear", startFrame: ev.startFrame, endFrame: Math.min(ev.startFrame + 12, ev.endFrame), ease: "ease_out" }); }
     // archetype + camera chosen by novelty against visual memory
     const comps = [...new Set(g.flatMap(c => c.cues))]; const split = g.some(c => c.split) && g.length > 1;
-    const cand = candidates(comps, split); const ap = pickMostNovel(cand, memory.usedArchetypes); memory.usedArchetypes.push(ap.pick);
+    const directorRoute = routeDirectorSkill(g.map(c => c.text).join(" "), comps, split); const cand = candidates(comps, split, g.map(c => c.text).join(" ")); const ap = pickMostNovel(cand, memory.usedArchetypes); memory.usedArchetypes.push(ap.pick);
     const cp = pickMostNovel([...CAMERA_PRESETS] as CameraPreset[], memory.previousCameraAngles); memory.previousCameraAngles.push(cp.pick);
     const focus = ents.filter(e => !["logo", "icon"].includes(e.kind)).slice(-1)[0]?.id ?? ents[0].id;
     memory.dominantColors.push(["acc", "acc2", "hot"][si % 3]);
@@ -129,7 +121,7 @@ export function choreograph(groups: Clause[][], ctx: Ctx): { scenes: VideoScene[
     } as Record<CameraPreset, CameraKey[]>)[cp.pick];
     audio.unshift({ id: `s_${++ai}`, frame: startFrame + 2, sfx: "whoosh", gain: .4 });
     scenes.push({ id: `scene_${String(si + 1).padStart(2, "0")}`, archetype: ap.pick, startFrame, endFrame, title: g[0].key.slice(0, 60), entities: ents, semanticEvents: events, camera: cam, audioEvents: audio.filter(a => a.frame >= startFrame && a.frame <= endFrame), typeScale: 1 });
-    notes.push({ scene: si + 1, seconds: +((endFrame - startFrame) / fps).toFixed(1), archetype: ap.pick, archetypeScores: ap.scores, camera: cp.pick, components: ents.map(e => `${e.kind}:${e.id}`), intents: events.map(e => e.intent) });
+    notes.push({ scene: si + 1, directorPrimitive: directorRoute.primitive, directorEvidence: directorRoute.evidence, seconds: +((endFrame - startFrame) / fps).toFixed(1), archetype: ap.pick, archetypeScores: ap.scores, camera: cp.pick, components: ents.map(e => `${e.kind}:${e.id}`), intents: events.map(e => e.intent) });
   });
   return { scenes, notes };
 }
