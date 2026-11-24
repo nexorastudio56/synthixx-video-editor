@@ -10,8 +10,9 @@ const ui = routeDirectorSkill("Open the browser and click the dashboard.", ["bro
 assert.equal(ui.primitive, "P19_ui_demo");
 const process = routeDirectorSkill("First connect the trigger, then automate the workflow.", ["workflow"], false);
 assert.equal(process.primitive, "P13_list_stack"); // explicit ordered-list cue takes precedence
-for (const id of DIRECTOR_PRIMITIVE_IDS) {
-  const route = routeDirectorSkill("A neutral generic sentence.", [], false);
-  assert.ok(route.candidates.length > 0, `route exists for ${id}`);
-}
+assert.equal(routeDirectorSkill("Show the product footage.", [], false).primitive, "P04_hero_media");
+assert.equal(routeDirectorSkill("A cityscape establishes the setting.", [], false).primitive, "P05_establishing_shot");
+assert.equal(routeDirectorSkill("This hierarchy has three levels.", [], false).primitive, "P18_hierarchy_pyramid");
+assert.equal(routeDirectorSkill("The important key point is simple.", [], false).primitive, "P02_kinetic_emphasis");
+assert.ok(routeDirectorSkill("A neutral generic sentence.", [], false).candidates.length > 0);
 console.log("Director skill tests passed: 24 primitives, deterministic precedence, supported archetype candidates.");
