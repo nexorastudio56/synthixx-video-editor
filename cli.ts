@@ -8,7 +8,7 @@ import { mixAudio } from "./audio/soundDesign.js";
 import { emitProject } from "./rendering/emitProject.js";
 import { analyzeEmphasis } from "./audio/emphasisAnalyzer.js";
 import { orchestrate } from "./rendering/chunkOrchestrator.js";
-import { hyperframesChunkRenderer } from "./rendering/renderPipeline.js";
+import { scenePageChunkRenderer } from "./rendering/renderPipeline.js";
 import { runVisualQA, conformAudio, ensureAssetHashes } from "./rendering/visualQA.js";
 import { PRESET_IDS, getPreset } from "./styles/presets.js";
 import { compileTheme } from "./styles/themeCompiler.js";
@@ -48,7 +48,7 @@ step("2/6 sound design (procedural SFX + pad + voice-keyed ducking)");
 const mix = mixAudio(g, d.wavPath, path.join(work, "mix.wav"), { music: !v["no-music"] }); conformAudio(mix.path, g.durationFrames, g.fps, path.join(work, "mix_exact.wav")); fs.copyFileSync(path.join(work, "mix_exact.wav"), mix.path); // exact video length (director pads video by a few frames) step(`   sfx=${mix.sfx} peak=${mix.peak} rms=${mix.rmsDb}dB duckedSpeech=${mix.duckedPct}%`);
 
 const emphasis = !v["no-emphasis"] && (g.fps === 30 || g.fps === 60) ? analyzeEmphasis({ wavPath: d.wavPath, words: g.voice.words, fps: g.fps, outPath: path.join(work, "emphasisTrack.json") }) : undefined; if (emphasis) step(`   emphasis: ${emphasis.impacts.length} impact words, track sha ${emphasis.sha256.slice(0, 10)}`);
-step("3/6 emit Hyperframes project");
+step("3/6 emit native GSAP scene project");
 const proj = path.join(work, "hf"); fs.mkdirSync(proj, { recursive: true });
 const hfBase = path.join(root, "hf_base"); for (const f of ["package.json", "hyperframes.json", "meta.json"]) if (fs.existsSync(path.join(hfBase, f))) fs.copyFileSync(path.join(hfBase, f), path.join(proj, f));
 emitProject(g, proj, { projectRoot: root, vendorAssets: path.join(root, "vendor"), audioFile: null, cinematic: v["no-cinematic"] ? false : undefined, emphasis });
@@ -68,7 +68,7 @@ if (v["storyboard-only"]) { step("storyboard-only: done (no video rendered)"); p
 
 step(`4/6 resumable chunk render (cpu-dom x${v.workers}, gpu-heavy x1, chunk<=${v["chunk-frames"]}f, quality=${v.quality})`);
 const budget = v.budget ? +v.budget : undefined; const jobId = v["job-id"] ?? `${name}_${tag}_${v.ratio!.replace(":", "x")}`; const final = path.join(outDir, `${jobId}.mp4`);
-const renderAll = async () => orchestrate({ jobId, projectsRoot: path.join(root, v["jobs-root"]!), graph: g, renderer: hyperframesChunkRenderer({ projectDir: proj, quality: v.quality as "draft" }), out: final, audioPath: mix.path, projectDir: proj, maxChunkFrames: +v["chunk-frames"]!, cpuConcurrency: Math.min(3, Math.max(2, +v.workers!)), quality: v.quality!, budgetSec: budget, log: step });
+const renderAll = async () => orchestrate({ jobId, projectsRoot: path.join(root, v["jobs-root"]!), graph: g, renderer: scenePageChunkRenderer({ projectDir: proj }), out: final, audioPath: mix.path, projectDir: proj, maxChunkFrames: +v["chunk-frames"]!, cpuConcurrency: Math.min(3, Math.max(2, +v.workers!)), quality: v.quality!, budgetSec: budget, log: step });
 let r = await renderAll();
 if (!r.complete) { step(`PAUSED: ${r.pending} chunk(s) still pending (time-boxed). Re-run the same command; verified chunks are skipped via projects/${jobId}/manifest.json.`); process.exit(3); }
 step(`5/6 assembled by orchestrator (${r.skipped} chunk(s) reused, ${r.rendered} rendered; audio muxed once)`);
