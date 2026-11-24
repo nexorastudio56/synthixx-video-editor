@@ -2,13 +2,11 @@
  * renderPipeline - resource-class scheduled, pipe-encoded, scene-boundary-chunked renderer.
  *   manifest -> jobs (scene boundaries, half-open) -> pool (<=1 gpu-heavy, 2..4 cpu-dom) -> per-chunk ffmpeg pipe (bt709, closed GOP)
  *   -> concat -c copy -> single audio mux.
- * Two interchangeable chunk renderers:
- *   - captureChunkRenderer: Playwright harness; every frame = seek(frame) + FrameBarrier.settle() + screenshot -> ffmpeg stdin (no PNG files on disk).
- *   - hyperframesChunkRenderer: the existing Hyperframes CLI (it writes its own mp4 so it cannot be piped); output is trimmed to exact frames and re-encoded with the same bt709/closed-GOP settings.
+ * Chunk renderers include a native scene-page GSAP seeker, a generic frame-barrier capture adapter, and a legacy Hyperframes adapter.
  */
 import { chromium, type Browser, type Page } from "playwright-core";
 import { spawn, spawnSync } from "node:child_process";
-import { mkdirSync, rmSync, existsSync, renameSync, readFileSync } from "node:fs";
+import { mkdirSync, rmSync, existsSync, renameSync, readFileSync, cpSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import type { SceneGraph, VideoScene } from "../schemas/scene.schema.js";
@@ -103,6 +101,9 @@ export function scenePageChunkRenderer(h: ScenePageHooks): ChunkRenderer {
     const part = `${file}.part.mp4`;
     const browser: Browser = await chromium.launch({ executablePath: resolveChrome(h.chromePath), args: chromeArgs(job.cls) });
     try {
+      const pageDir = join(ctx.workDir, `scene_pages_${job.index}`);
+      mkdirSync(pageDir, { recursive: true });
+      cpSync(join(h.projectDir, "assets"), join(pageDir, "assets"), { recursive: true });
       const page: Page = await browser.newPage({ viewport: { width: ctx.width, height: ctx.height }, deviceScaleFactor: 1 });
       const quality = h.quality ?? "looks";
       const encode = quality === "draft" ? { crf: 20, preset: "veryfast" } : quality === "delivery" ? { crf: 14, preset: "slow" } : { crf: 16, preset: "medium" };
@@ -114,7 +115,7 @@ export function scenePageChunkRenderer(h: ScenePageHooks): ChunkRenderer {
         if (!scene) throw new Error(`no scene owns global frame ${frame}`);
         if (!active || active.id !== scene.id) {
           const composition = readFileSync(join(h.projectDir, "compositions", `${scene.id}.html`), "utf8");
-          const pageFile = writeScenePage(ctx.graph, scene, h.projectDir, composition);
+          const pageFile = writeScenePage(ctx.graph, scene, pageDir, composition);
           await page.goto(pathToFileURL(pageFile).href, { waitUntil: "load" });
           await page.evaluate(() => document.fonts.ready.then(() => true));
           await page.waitForFunction((id: string) => {
