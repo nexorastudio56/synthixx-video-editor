@@ -8,9 +8,11 @@
  */
 import { chromium, type Browser, type Page } from "playwright-core";
 import { spawn, spawnSync } from "node:child_process";
-import { mkdirSync, rmSync, existsSync, renameSync } from "node:fs";
+import { mkdirSync, rmSync, existsSync, renameSync, readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
-import type { SceneGraph } from "../schemas/scene.schema.js";
+import { pathToFileURL } from "node:url";
+import type { SceneGraph, VideoScene } from "../schemas/scene.schema.js";
+import { writeScenePage } from "./storyboard.js";
 import { assertFps, type Fps } from "../core/determinism/timelineClock.js";
 import { BARCODE_BITS, decodeBarcode, type BarcodeGeom } from "../core/determinism/frameBarrier.js";
 import { buildCostManifest, planSceneChunks, assertChunkCoverage, runPool, chromeArgs, cpuWorkerCount, type ChunkJob, type PoolStats, type ResourceClass } from "./resourceScheduler.js";
@@ -84,6 +86,66 @@ export function captureChunkRenderer(h: CaptureHooks): ChunkRenderer {
       }
       await enc.finish(); renameSync(part, file); return file;
     } finally { await browser.close(); }
+  };
+}
+
+/* ---------------- Native scene-page renderer (no Hyperframes CLI) ---------------- */
+export interface ScenePageHooks { readonly projectDir: string; readonly chromePath?: string }
+
+/**
+ * Render exact global frames by seeking the engine's own paused GSAP scene timelines.
+ * Each scene page is emitted from the validated SceneGraph; no external video CLI,
+ * wall-clock animation, or model-authored geometry is involved.
+ */
+export function scenePageChunkRenderer(h: ScenePageHooks): ChunkRenderer {
+  return async (job, ctx) => {
+    const file = join(ctx.workDir, `chunk_${String(job.index).padStart(3, "0")}.mp4`);
+    const part = `${file}.part.mp4`;
+    const browser: Browser = await chromium.launch({ executablePath: resolveChrome(h.chromePath), args: chromeArgs(job.cls) });
+    let encoder: FfmpegPipeEncoder | undefined;
+    try {
+      const page: Page = await browser.newPage({ viewport: { width: ctx.width, height: ctx.height }, deviceScaleFactor: 1 });
+      encoder = new FfmpegPipeEncoder({ out: part, width: ctx.width, height: ctx.height, fps: ctx.fps, format: "png" });
+      let active: VideoScene | undefined;
+      let bgFrame: import("playwright-core").Frame | undefined;
+      for (let frame = job.startFrame; frame < job.endFrame; frame++) {
+        const scene = ctx.graph.scenes.find(s => frame >= s.startFrame && frame < s.endFrame);
+        if (!scene) throw new Error(`no scene owns global frame ${frame}`);
+        if (!active || active.id !== scene.id) {
+          const composition = readFileSync(join(h.projectDir, "compositions", `${scene.id}.html`), "utf8");
+          const pageFile = writeScenePage(ctx.graph, scene, h.projectDir, composition);
+          await page.goto(pathToFileURL(pageFile).href, { waitUntil: "load" });
+          await page.evaluate(() => document.fonts.ready.then(() => true));
+          await page.waitForFunction((id: string) => {
+            const w = window as unknown as { __timelines?: Record<string, unknown> };
+            return !!w.__timelines?.[id];
+          }, scene.id, { timeout: 15000 });
+          await page.waitForFunction(() => {
+            const iframe = document.querySelector("#__bg") as HTMLIFrameElement | null;
+            const w = iframe?.contentWindow as unknown as { __timelines?: Record<string, unknown> } | null;
+            return !iframe || !!w?.__timelines?.bg;
+          }, undefined, { timeout: 15000 });
+          bgFrame = page.frames().find(x => x.url().endsWith("_sb_bg.html"));
+          active = scene;
+        }
+        const localTime = +((frame - scene.startFrame) / ctx.fps).toFixed(6);
+        await page.evaluate(({ id, t }: { id: string; t: number }) => {
+          const w = window as unknown as { __timelines: Record<string, { time: (time: number, suppressEvents?: boolean) => unknown }> };
+          w.__timelines[id]!.time(t, false);
+        }, { id: scene.id, t: localTime });
+        if (bgFrame) await bgFrame.evaluate((t: number) => {
+          const w = window as unknown as { __timelines: Record<string, { time: (time: number, suppressEvents?: boolean) => unknown }> };
+          w.__timelines.bg?.time(t, false);
+        }, frame / ctx.fps);
+        await page.evaluate(() => new Promise<void>(r => requestAnimationFrame(() => requestAnimationFrame(() => r()))));
+        await encoder.write(await page.screenshot({ type: "png" }));
+      }
+      await encoder.finish();
+      renameSync(part, file);
+      return file;
+    } finally {
+      await browser.close();
+    }
   };
 }
 
