@@ -63,6 +63,14 @@ export function routeDirectorSkill(text: string, comps: Comp[], split: boolean):
     primitive = "P03_question_hook"; evidence = ["question cue"];
   } else if (/\b(first|second|third|step 1|step 2|finally|next)\b/.test(t)) {
     primitive = "P13_list_stack"; evidence = ["ordered-list cue"];
+  } else if (/\b(photo|photograph|footage|video clip|hero image|show the product)\b/.test(t)) {
+    primitive = "P04_hero_media"; evidence = ["explicit media cue"];
+  } else if (/\b(scene|landscape|setting|cityscape|environment|establishing shot)\b/.test(t)) {
+    primitive = "P05_establishing_shot"; evidence = ["environment cue"];
+  } else if (/\b(hierarchy|levels|layers|pyramid|top tier|foundation)\b/.test(t)) {
+    primitive = "P18_hierarchy_pyramid"; evidence = ["hierarchy cue"];
+  } else if (/\b(emphasize|emphasis|highlight|key point|important|critical)\b/.test(t)) {
+    primitive = "P02_kinetic_emphasis"; evidence = ["emphasis cue"];
   } else if (/\b(because|therefore|leads to|causes|as a result)\b/.test(t)) {
     primitive = "P16_causal_chain"; evidence = ["causal connector"];
   } else if (/\b(before|after|previously|now it)\b/.test(t)) {
