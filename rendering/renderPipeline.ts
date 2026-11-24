@@ -102,10 +102,9 @@ export function scenePageChunkRenderer(h: ScenePageHooks): ChunkRenderer {
     const file = join(ctx.workDir, `chunk_${String(job.index).padStart(3, "0")}.mp4`);
     const part = `${file}.part.mp4`;
     const browser: Browser = await chromium.launch({ executablePath: resolveChrome(h.chromePath), args: chromeArgs(job.cls) });
-    let encoder: FfmpegPipeEncoder | undefined;
     try {
       const page: Page = await browser.newPage({ viewport: { width: ctx.width, height: ctx.height }, deviceScaleFactor: 1 });
-      encoder = new FfmpegPipeEncoder({ out: part, width: ctx.width, height: ctx.height, fps: ctx.fps, format: "png" });
+      const encoder = new FfmpegPipeEncoder({ out: part, width: ctx.width, height: ctx.height, fps: ctx.fps, format: "png" });
       let active: VideoScene | undefined;
       let bgFrame: import("playwright-core").Frame | undefined;
       for (let frame = job.startFrame; frame < job.endFrame; frame++) {
@@ -126,6 +125,7 @@ export function scenePageChunkRenderer(h: ScenePageHooks): ChunkRenderer {
             return !iframe || !!w?.__timelines?.bg;
           }, undefined, { timeout: 15000 });
           bgFrame = page.frames().find(x => x.url().endsWith("_sb_bg.html"));
+          if (bgFrame) await bgFrame.evaluate(() => document.fonts.ready.then(() => true));
           active = scene;
         }
         const localTime = +((frame - scene.startFrame) / ctx.fps).toFixed(6);
