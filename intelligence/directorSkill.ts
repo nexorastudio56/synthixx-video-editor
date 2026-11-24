@@ -35,7 +35,7 @@ const ROUTES: Record<PrimitiveId, Archetype[]> = {
   P10_source_document: ["terminal_run", "live_ui_action"],
   P11_comparison_split: ["split_comparison", "before_after"],
   P12_before_after: ["before_after", "split_comparison"],
-  P13_list_stack: ["exploded_view", "card_deck"],
+  P13_list_stack: ["exploded_view", "process_simulation"],
   P14_timeline: ["timeline_journey", "process_simulation"],
   P15_process_flow: ["process_simulation", "workflow_build"],
   P16_causal_chain: ["network_graph", "process_simulation"],
