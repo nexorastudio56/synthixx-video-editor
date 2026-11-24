@@ -90,7 +90,7 @@ export function captureChunkRenderer(h: CaptureHooks): ChunkRenderer {
 }
 
 /* ---------------- Native scene-page renderer (no Hyperframes CLI) ---------------- */
-export interface ScenePageHooks { readonly projectDir: string; readonly chromePath?: string }
+export interface ScenePageHooks { readonly projectDir: string; readonly chromePath?: string; readonly quality?: "draft" | "looks" | "delivery" }
 
 /**
  * Render exact global frames by seeking the engine's own paused GSAP scene timelines.
@@ -104,7 +104,9 @@ export function scenePageChunkRenderer(h: ScenePageHooks): ChunkRenderer {
     const browser: Browser = await chromium.launch({ executablePath: resolveChrome(h.chromePath), args: chromeArgs(job.cls) });
     try {
       const page: Page = await browser.newPage({ viewport: { width: ctx.width, height: ctx.height }, deviceScaleFactor: 1 });
-      const encoder = new FfmpegPipeEncoder({ out: part, width: ctx.width, height: ctx.height, fps: ctx.fps, format: "png" });
+      const quality = h.quality ?? "looks";
+      const encode = quality === "draft" ? { crf: 20, preset: "veryfast" } : quality === "delivery" ? { crf: 14, preset: "slow" } : { crf: 16, preset: "medium" };
+      const encoder = new FfmpegPipeEncoder({ out: part, width: ctx.width, height: ctx.height, fps: ctx.fps, format: "png", ...encode });
       let active: VideoScene | undefined;
       let bgFrame: import("playwright-core").Frame | undefined;
       for (let frame = job.startFrame; frame < job.endFrame; frame++) {
