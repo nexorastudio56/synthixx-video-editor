@@ -100,6 +100,7 @@ export function scenePageChunkRenderer(h: ScenePageHooks): ChunkRenderer {
     const file = join(ctx.workDir, `chunk_${String(job.index).padStart(3, "0")}.mp4`);
     const part = `${file}.part.mp4`;
     const browser: Browser = await chromium.launch({ executablePath: resolveChrome(h.chromePath), args: chromeArgs(job.cls) });
+    let finishEncoder: (() => Promise<void>) | undefined;
     try {
       const pageDir = join(ctx.workDir, `scene_pages_${job.index}`);
       mkdirSync(pageDir, { recursive: true });
@@ -108,6 +109,7 @@ export function scenePageChunkRenderer(h: ScenePageHooks): ChunkRenderer {
       const quality = h.quality ?? "looks";
       const encode = quality === "draft" ? { crf: 20, preset: "veryfast" } : quality === "delivery" ? { crf: 14, preset: "slow" } : { crf: 16, preset: "medium" };
       const encoder = new FfmpegPipeEncoder({ out: part, width: ctx.width, height: ctx.height, fps: ctx.fps, format: "png", ...encode });
+      finishEncoder = () => encoder.finish();
       let active: VideoScene | undefined;
       let bgFrame: import("playwright-core").Frame | undefined;
       for (let frame = job.startFrame; frame < job.endFrame; frame++) {
@@ -144,9 +146,11 @@ export function scenePageChunkRenderer(h: ScenePageHooks): ChunkRenderer {
         await encoder.write(await page.screenshot({ type: "png" }));
       }
       await encoder.finish();
+      finishEncoder = undefined;
       renameSync(part, file);
       return file;
     } finally {
+      if (finishEncoder) { try { await finishEncoder(); } catch { /* preserve the original render error */ } }
       await browser.close();
     }
   };
